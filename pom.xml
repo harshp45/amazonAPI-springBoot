@@ -14,8 +14,9 @@
 	<name>AmazonAPI</name>
 	<description>REST API for amazon-clone</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>15</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
