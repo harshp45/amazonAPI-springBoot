@@ -24,6 +24,17 @@ public class ProductService {
         repository.insert(product);
     }
 
+
+    public List<Product> getProductbyCategory(String category)
+    {
+        return repository.findByCategory(category);
+    }
+
+    public List<Product> getBestsellerProduct(Boolean bestseller)
+    {
+        return repository.findByBestseller(bestseller);
+    }
+
     public Optional<Product> getAProduct(String id)
     {
         return repository.findById(id);

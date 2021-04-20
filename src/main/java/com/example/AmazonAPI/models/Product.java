@@ -1,32 +1,32 @@
 package com.example.AmazonAPI.models;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Product {
 
     @Id
     private String id;
     private String title;
+    private String image;
     private String description;
-    private String price;
-    private String rating;
+    private double price;
+    private int rating;
     private String category;
-    private String popularity;
+    private Boolean bestseller;
 
     public Product() {
     }
 
-    public Product(String id, String title, String description, String price, String rating, String category, String popularity) {
+    public Product(String id, String title, String image, String description, double price, int rating, String category, Boolean bestseller) {
         this.id = id;
         this.title = title;
+        this.image = image;
         this.description = description;
         this.price = price;
         this.rating = rating;
         this.category = category;
-        this.popularity = popularity;
+        this.bestseller = bestseller;
     }
-
 
     public String getId() {
         return id;
@@ -44,6 +44,14 @@ public class Product {
         this.title = title;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -52,19 +60,19 @@ public class Product {
         this.description = description;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public String getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -76,12 +84,12 @@ public class Product {
         this.category = category;
     }
 
-    public String getPopularity() {
-        return popularity;
+    public Boolean getBestseller() {
+        return bestseller;
     }
 
-    public void setPopularity(String popularity) {
-        this.popularity = popularity;
+    public void setBestseller(Boolean bestseller) {
+        this.bestseller = bestseller;
     }
 
     @Override
@@ -89,11 +97,12 @@ public class Product {
         return "Product{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
+                ", image='" + image + '\'' +
                 ", description='" + description + '\'' +
-                ", price='" + price + '\'' +
-                ", rating='" + rating + '\'' +
+                ", price=" + price +
+                ", rating=" + rating +
                 ", category='" + category + '\'' +
-                ", popularity='" + popularity + '\'' +
+                ", bestseller=" + bestseller +
                 '}';
     }
 }

@@ -10,10 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
-import java.util.List;
 
 
 @RestController
+@CrossOrigin
 public class ProductController {
 
     @Autowired
@@ -24,6 +24,22 @@ public class ProductController {
     {
         var customizedResponse = new CustomizedResponse("List of all products",service.getProducts());
         return new ResponseEntity(customizedResponse,HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/category",consumes = {
+        MediaType.APPLICATION_JSON_VALUE
+    })
+    public ResponseEntity getProductbyCategory(@RequestBody Product product)
+    {
+        var customizedResponse = new CustomizedResponse("Products by category", service.getProductbyCategory(product.getCategory()));
+        return new ResponseEntity(customizedResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/bestseller")
+    public ResponseEntity getBestsellerProduct()
+    {
+        var customizedResponse = new CustomizedResponse("Bestseller Products", service.getBestsellerProduct(true));
+        return new ResponseEntity(customizedResponse, HttpStatus.OK);
     }
 
 
@@ -44,7 +60,7 @@ public class ProductController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/products",consumes = {
+    @PostMapping(value = "/products/add",consumes = {
             MediaType.APPLICATION_JSON_VALUE
     })
     public ResponseEntity addProduct(@RequestBody Product product)

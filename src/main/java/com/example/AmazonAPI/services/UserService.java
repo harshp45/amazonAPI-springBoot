@@ -19,6 +19,7 @@ public class UserService {
         return repository.findAll();
     }
 
+
     public void insertIntoUser(User user)
     {
         repository.insert(user);
@@ -27,6 +28,11 @@ public class UserService {
     public Optional<User> getAUser(String id)
     {
         return repository.findById(id);
+    }
+
+    public User loginUser(String email)
+    {
+        return repository.findByEmail(email);
     }
 
     public void deleteAUser(String id)
