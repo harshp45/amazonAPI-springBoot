@@ -42,21 +42,18 @@ public class UserController {
     })
     public ResponseEntity loginUser(@RequestBody User user)
     {
-//        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-//        String jws = Jwts.builder().setSubject("{\"name\":\"Harsh\"}").signWith(key).compact();
-//        System.out.print("Token:"+jws);
         var customizedResponse = service.loginUser(user.getEmail());
         String hashPass = customizedResponse.getPassword();
         String currentPass = user.getPassword();
         if(BCrypt.checkpw(currentPass, hashPass))
         {
             System.out.print("\nPassword Matched"+HttpStatus.OK);
-            return new ResponseEntity(customizedResponse.getName(),HttpStatus.OK);
+            return new ResponseEntity(customizedResponse, HttpStatus.OK);
         }
         else
         {
             System.out.print("\nPassword Not Matched"+HttpStatus.FORBIDDEN);
-            return new ResponseEntity("Incorrect Password",HttpStatus.FORBIDDEN);
+            return new ResponseEntity("Incorrect Password", HttpStatus.FORBIDDEN);
         }
     }
 
@@ -68,7 +65,7 @@ public class UserController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/users",consumes = {
+    @PostMapping(value = "/users/register",consumes = {
             MediaType.APPLICATION_JSON_VALUE
     })
     public ResponseEntity addUser(@RequestBody User user)
